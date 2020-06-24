@@ -7,10 +7,12 @@ import java.io.IOException;
 import java.sql.Date;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.PathVariable;
+
 
 import com.example.model.Covid;
 
@@ -50,18 +52,16 @@ public class CovidService {
 			e.printStackTrace();
 		}
 	}
-	public void getCovidData() {
+	public Iterable<Covid> getCovidData() {
 		
-		dto.findAll();
-		
-  System.out.println(dto.findAll());		
+		return dto.findAll();
+			
 	}
-public void getDatafromDBById(@PathVariable int id) {
+public Optional<Covid> getDatafromDBById(@PathVariable int id) {
 		
-		//Date id = null;
-		dto.findById(id);
 		
-  System.out.println(dto.findById(id));		
+	return dto.findById(id);
+				
 	}
 
 }
